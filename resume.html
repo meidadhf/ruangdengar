@@ -16,13 +16,44 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <script defer>
+            // Fungsi untuk toggle tampilan password
+            function togglePassword() {
+                var passwordField = document.getElementById("password");
+                var toggleIcon = document.getElementById("togglePasswordIcon");
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    toggleIcon.innerHTML = "🙈"; // Icon untuk sembunyikan
+                } else {
+                    passwordField.type = "password";
+                    toggleIcon.innerHTML = "👁"; // Icon untuk tampilkan
+                }
+            }
+
+            // Fungsi untuk validasi form dan redirect
+            function validateForm(event) {
+                event.preventDefault();
+                
+                var username = document.getElementById("username").value;
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+
+                // Cek jika semua field diisi
+                if (username === "" || email === "" || password === "") {
+                    alert("Semua field harus diisi!");
+                } else {
+                    // Jika valid, arahkan ke pesan.html
+                    window.location.href = "pesan.html";
+                }
+            }
+        </script>
     </head>
     <body class="d-flex flex-column h-100 bg-light">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Ruang dengar</span></a>
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Ruang Dengar</span></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
@@ -53,52 +84,28 @@
                                     </div>
                                     <div class="row gx-5 justify-content-center">
                                         <div class="col-lg-8 col-xl-6">
-                                            <!-- * * * * * * * * * * * * * * *-->
-                                            <!-- * * SB Forms Contact Form * *-->
-                                            <!-- * * * * * * * * * * * * * * *-->
-                                            <!-- This form is pre-integrated with SB Forms.-->
-                                            <!-- To make this form functional, sign up at-->
-                                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                                            <!-- to get an API token!-->
-                                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                                <!-- Name input-->
+                                            <!-- Form login guru-->
+                                            <form id="contactForm" onsubmit="validateForm(event)">
+                                                <!-- Username input-->
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                                    <label for="name">Username</label>
-                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                                    <input class="form-control" id="username" type="text" placeholder="Enter your username..." required />
+                                                    <label for="username">Username</label>
                                                 </div>
                                                 <!-- Email address input-->
                                                 <div class="form-floating mb-3">
-                                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                                    <label for="name">Email</label>
-                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                                    <input class="form-control" id="email" type="email" placeholder="Enter your email..." required />
+                                                    <label for="email">Email</label>
                                                 </div>
-                                                <!-- Phone number input-->
-                                                <div class="form-floating mb-3">
-                                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                                    <label for="name">Password</label>
-                                                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                                <!-- Password input-->
+                                                <div class="form-floating mb-3 position-relative">
+                                                    <input class="form-control" id="password" type="password" placeholder="Enter your password..." required />
+                                                    <label for="password">Password</label>
+                                                    <span id="togglePasswordIcon" onclick="togglePassword()" style="cursor: pointer; position: absolute; right: 10px; top: 20px;">👁</span>
                                                 </div>
-                                                <!-- Message input-->
-                                                
-                                                <!-- Submit success message-->
-                                                <!---->
-                                                <!-- This is what your users will see when the form-->
-                                                <!-- has successfully submitted-->
-                                                <div class="d-none" id="submitSuccessMessage">
-                                                    <div class="text-center mb-3">
-                                                        <div class="fw-bolder">Pesan Berhasil Terkirim</div>
-                                                        Tunggu Guru Untuk Merespon Pesan!
-                                                        <br />
-                                                    </div>
-                                                </div>
-                                                <!-- Submit error message-->
-                                                <!---->
-                                                <!-- This is what your users will see when there is-->
-                                                <!-- an error submitting the form-->
-                                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                                 <!-- Submit Button-->
-                                                <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                                <div class="d-grid">
+                                                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -113,7 +120,7 @@
         <footer class="bg-white py-4 mt-auto">
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Ruang Dengar 2023</div></div>
                     <div class="col-auto">
                         <a class="small" href="#!">Privacy</a>
                         <span class="mx-1">&middot;</span>
