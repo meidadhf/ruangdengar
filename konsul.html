@@ -27,9 +27,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="resume.html">Login Guru</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects.html">Daftar Guru</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Konseling</a></li>
+                            <li class="nav-item"><a class="nav-link" href="daftarguru.html">Daftar Guru</a></li>
+                            <li class="nav-item"><a class="nav-link" href="konsul.html">Konseling</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,17 +55,19 @@
                                 <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">Username</label>
+                                        <select class="form-select" id="name" data-sb-validations="required">
+                                          <option value="">00504122001</option>
+                                          <option value="teacher1">00504122002</option>
+                                          <option value="teacher2">00504122003</option>
+                                          <option value="teacher3">00504122004</option>
+                                          <option value="teacher4">00504122005</option>
+                                          <option value="teacher5">00504122006</option>
+                                          <option value="teacher6">00504122007</option>
+                                          </select>
+                                        <label for="name">Nama Guru</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                                    </div>
+                                      </div>
                                     <!-- Email address input-->
-                                    <!-- Phone number input-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                        <label for="name">Id Guru</label>
-                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                                    </div>
                                     <!-- Message input-->
                                     <div class="form-floating mb-3">
                                         <textarea class="form-control" id="message" type="text" placeholder="Ketik pesanmu disini..." style="height:20rem" data-sb-validations="required"></textarea>
@@ -92,6 +93,20 @@
                                     <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
                                 </form>
+                                <script>
+                                    const form = document.querySelector('form');
+                                    const submitButton = document.getElementById('submitButton');
+                                    const guruSelect = document.getElementById('name'); // Assuming the dropdown ID is 'name'
+                                  
+                                    form.addEventListener('submit', (event) => {
+                                      event.preventDefault(); // Prevent the default form submission
+                                  
+                                      const selectedTeacher = guruSelect.value;
+                                  
+                                      // Redirect to the corresponding teacher's page
+                                      window.location.href = `pesan.html?guru=${selectedTeacher}`;
+                                    });
+                                  </script>
                             </div>
                         </div>
                     </div>
@@ -102,7 +117,7 @@
         <footer class="bg-white py-4 mt-auto">
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Pasukan Bismillah Jalan 2024</div></div>
                     <div class="col-auto">
                         <a class="small" href="#!">Privacy</a>
                         <span class="mx-1">&middot;</span>
